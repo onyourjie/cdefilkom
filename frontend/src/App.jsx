@@ -1,29 +1,52 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import Cart from './pages/Cart/Cart';
-import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
-import { Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
-import LoginPopup from './components/LoginPopup/LoginPopup'
+import React, { useState } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import Cart from "./pages/Cart/Cart";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
+import LoginPopup from "./components/LoginPopup/LoginPopup";
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    UserButton,
+} from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
-  const[showLogin, setShowLogin] = useState(false)
+    const [showLogin, setShowLogin] = useState(false);
 
-  return (
-    <>     
-    {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
-    <div className="app">
-      <Navbar setShowLogin={setShowLogin}/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={<PlaceOrder   />} />
-      </Routes>
-    </div>
-    <Footer/>
-    </>
-  );
-}
+    return (
+        <>
+            {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : null}
+            {/* {showLogin ? (
+                <>
+                    <SignedOut>
+                        <SignInButton />
+                        <button className="text-blue-600 underline">
+                            Login
+                        </button>
+                    </SignedOut>
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
+                </>
+            ) : null} */}
+
+            <div className="app">
+                <Navbar setShowLogin={setShowLogin} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/order" element={<PlaceOrder />} />
+                </Routes>
+            </div>
+            <Footer />
+            <ToastContainer />
+        </>
+    );
+};
 
 export default App;
