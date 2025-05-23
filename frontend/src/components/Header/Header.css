@@ -5,6 +5,7 @@
     background: url('/header_img.png') no-repeat center;
     background-size: cover; 
     position: relative;
+    
 }
 .header-contents{
     position: absolute;
@@ -53,4 +54,3 @@
         padding: 2vw 4vw;
     }
 }
-

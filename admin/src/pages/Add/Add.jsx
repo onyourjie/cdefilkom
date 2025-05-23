@@ -12,7 +12,7 @@ const Add = () => {
     name: "",
     description: "",
     price: "",
-    category: "Salad"
+    category: "Nasi & Lauk"
   });
 
   const onChangeHandler = (event) => {
@@ -35,7 +35,7 @@ const Add = () => {
         name: "",
         description: "",
         price: "",
-        category: "Salad"
+        category: "Nasi & Lauk"
       })
       setImage(false); 
       toast.success('response.data.message');
@@ -118,14 +118,14 @@ const Add = () => {
               name="category"
               value={data.category}
             >
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Deserts">Deserts</option>
-              <option value="Sandwitch">Sandwitch</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Vag">Pure Vag</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option>
+              <option value="Nasi & Lauk">Nasi & Lauk</option>
+              <option value="Sayur Tradisional">Sayur Tradisional</option>
+              <option value="Jajanan Pasar">Jajanan Pasar</option>
+              <option value="Makanan Berkuah">Makanan Berkuah</option>
+              <option value="Gorengan">Gorengan</option>
+              <option value="Minuman Tradisional">Minuman Tradisional</option>
+              <option value="Kue & Cemilan">Kue & Cemilan</option>
+              <option value="Olahan Ayam/Sapi">Olahan Ayam/Sapi</option>
             </select>
           </div>
 
