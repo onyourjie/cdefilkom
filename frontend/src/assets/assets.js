@@ -84,267 +84,294 @@ export const assets = {
 
 export const menu_list = [
     {
-        menu_name: "Salad",
+        menu_name: "Nasi & Lauk",
         menu_image: menu_1
     },
     {
-        menu_name: "Rolls",
+        menu_name: "Sayur Tradisional",
         menu_image: menu_2
     },
     {
-        menu_name: "Deserts",
+        menu_name: "Jajanan Pasar",
         menu_image: menu_3
     },
     {
-        menu_name: "Sandwich",
+        menu_name: "Makanan Berkuah",
         menu_image: menu_4
     },
     {
-        menu_name: "Cake",
+        menu_name: "Gorengan",
         menu_image: menu_5
     },
     {
-        menu_name: "Pure Veg",
+        menu_name: "Minuman Tradisional",
         menu_image: menu_6
     },
     {
-        menu_name: "Pasta",
+        menu_name: "Kue & Cemilan",
         menu_image: menu_7
     },
     {
-        menu_name: "Noodles",
+        menu_name: "Olahan Ayam/Sapi",
         menu_image: menu_8
     }]
 
 export const food_list = [
     {
         _id: "1",
-        name: "Greek salad",
+        name: "Nasi Goreng Spesial",
         image: food_1,
         price: 20000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Salad"
+        description: "Nasi goreng dengan bumbu khas dan tambahan telur serta ayam.",
+        category: "Nasi & Lauk"
     },
     {
         _id: "2",
-        name: "Veg salad",
+        name: "Nasi Uduk Betawi",
         image: food_2,
         price: 15000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Salad"
-    }, {
+        description: "Nasi gurih dimasak dengan santan dan daun pandan, disajikan lengkap.",
+        category: "Nasi & Lauk"
+    },
+    {
         _id: "3",
-        name: "Clover Salad",
+        name: "Nasi Padang",
         image: food_3,
         price: 16000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Salad"
-    }, {
+        description: "Nasi dengan lauk khas Padang yang pedas dan kaya rempah.",
+        category: "Nasi & Lauk"
+    },
+    {
         _id: "4",
-        name: "Chicken Salad",
+        name: "Nasi Kuning Komplit",
         image: food_4,
         price: 24000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Salad"
-    }, {
+        description: "Nasi kuning harum dengan lauk lengkap dan sambal khas.",
+        category: "Nasi & Lauk"
+    },
+    {
         _id: "5",
-        name: "Lasagna Rolls",
+        name: "Sayur Lodeh Jawa",
         image: food_5,
         price: 14000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Rolls"
-    }, {
+        description: "Sayur lodeh kuah santan dengan campuran sayuran segar.",
+        category: "Sayur Tradisional"
+    },
+    {
         _id: "6",
-        name: "Peri Peri Rolls",
+        name: "Sayur Asem Segar",
         image: food_6,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Rolls"
-    }, {
+        description: "Sayur asem segar dengan rasa asam yang menyegarkan.",
+        category: "Sayur Tradisional"
+    },
+    {
         _id: "7",
-        name: "Chicken Rolls",
+        name: "Capcay Goreng",
         image: food_7,
         price: 20000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Rolls"
-    }, {
+        description: "Sayur capcay dengan aneka sayuran dan daging pilihan.",
+        category: "Sayur Tradisional"
+    },
+    {
         _id: "8",
-        name: "Veg Rolls",
+        name: "Sayur Bayam Kuah Santan",
         image: food_8,
         price: 15000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Rolls"
-    }, {
+        description: "Bayam segar dimasak kuah santan gurih dan lezat.",
+        category: "Sayur Tradisional"
+    },
+    {
         _id: "9",
-        name: "Ripple Ice Cream",
+        name: "Klepon Manis",
         image: food_9,
         price: 14000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        description: "Jajanan pasar manis berisi gula merah dan kelapa parut.",
+        category: "Jajanan Pasar"
+    },
+    {
         _id: "10",
-        name: "Fruit Ice Cream",
+        name: "Lupis Ketan",
         image: food_10,
         price: 22000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        description: "Jajanan ketan dengan gula merah cair dan kelapa parut.",
+        category: "Jajanan Pasar"
+    },
+    {
         _id: "11",
-        name: "Jar Ice Cream",
+        name: "Cenil Kenyal",
         image: food_11,
         price: 10000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        description: "Cemilan kenyal berwarna-warni dengan taburan kelapa parut.",
+        category: "Jajanan Pasar"
+    },
+    {
         _id: "12",
-        name: "Vanilla Ice Cream",
+        name: "Dadar Gulung",
         image: food_12,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
+        description: "Kue dadar gulung isi kelapa manis dengan warna hijau alami.",
+        category: "Jajanan Pasar"
     },
     {
         _id: "13",
-        name: "Chicken Sandwich",
+        name: "Soto Ayam Kampung",
         image: food_13,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Sandwich"
+        description: "Sup ayam dengan bumbu rempah dan kuah bening segar.",
+        category: "Makanan Berkuah"
     },
     {
         _id: "14",
-        name: "Vegan Sandwich",
+        name: "Rawon Daging",
         image: food_14,
         price: 18000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Sandwich"
-    }, {
+        description: "Sup daging hitam dengan kluwek khas Jawa Timur.",
+        category: "Makanan Berkuah"
+    },
+    {
         _id: "15",
-        name: "Grilled Sandwich",
+        name: "Bakso Sapi Kenyal",
         image: food_15,
         price: 16000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Sandwich"
-    }, {
+        description: "Bakso sapi dengan kuah kaldu gurih dan pelengkap.",
+        category: "Makanan Berkuah"
+    },
+    {
         _id: "16",
-        name: "Bread Sandwich",
+        name: "Sop Buntut Sapi",
         image: food_16,
         price: 24000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Sandwich"
-    }, {
+        description: "Sup buntut sapi dengan rempah khas dan sayuran segar.",
+        category: "Makanan Berkuah"
+    },
+    {
         _id: "17",
-        name: "Cup Cake",
+        name: "Bakwan Sayur",
         image: food_17,
         price: 14000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
-    }, {
+        description: "Gorengan renyah berisi sayuran segar dan tepung.",
+        category: "Gorengan"
+    },
+    {
         _id: "18",
-        name: "Vegan Cake",
+        name: "Tempe Goreng Crispy",
         image: food_18,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
-    }, {
+        description: "Tempe goreng gurih dengan tekstur renyah luar dalam.",
+        category: "Gorengan"
+    },
+    {
         _id: "19",
-        name: "Butterscotch Cake",
+        name: "Tahu Isi Sayur",
         image: food_19,
         price: 20000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
-    }, {
+        description: "Tahu goreng isi sayur segar dan bumbu lezat.",
+        category: "Gorengan"
+    },
+    {
         _id: "20",
-        name: "Sliced Cake",
+        name: "Risoles Isi Ragout",
         image: food_20,
         price: 15000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
-    }, {
+        description: "Gorengan risoles dengan isi ragout ayam dan sayur.",
+        category: "Gorengan"
+    },
+    {
         _id: "21",
-        name: "Garlic Mushroom ",
+        name: "Es Cendol Segar",
         image: food_21,
         price: 14000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pure Veg"
-    }, {
+        description: "Minuman tradisional dari tepung beras dan gula merah.",
+        category: "Minuman Tradisional"
+    },
+    {
         _id: "22",
-        name: "Fried Cauliflower",
+        name: "Es Campur Buah",
         image: food_22,
         price: 22000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pure Veg"
-    }, {
+        description: "Minuman campuran buah segar dengan es dan sirup manis.",
+        category: "Minuman Tradisional"
+    },
+    {
         _id: "23",
-        name: "Mix Veg Pulao",
+        name: "Wedang Jahe Hangat",
         image: food_23,
         price: 10000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pure Veg"
-    }, {
+        description: "Minuman jahe tradisional untuk menghangatkan tubuh.",
+        category: "Minuman Tradisional"
+    },
+    {
         _id: "24",
-        name: "Rice Zucchini",
+        name: "Bajigur Manis",
         image: food_24,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pure Veg"
+        description: "Minuman hangat dari santan, gula merah, dan jahe.",
+        category: "Minuman Tradisional"
     },
     {
         _id: "25",
-        name: "Cheese Pasta",
+        name: "Kue Lapis Legit",
         image: food_25,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
+        description: "Kue lapis manis dengan lapisan tipis dan rasa legit.",
+        category: "Kue & Cemilan"
     },
     {
         _id: "26",
-        name: "Tomato Pasta",
+        name: "Serabi Kinca",
         image: food_26,
         price: 18000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
-    }, {
+        description: "Pancake tradisional dengan sirup gula merah kinca.",
+        category: "Kue & Cemilan"
+    },
+    {
         _id: "27",
-        name: "Creamy Pasta",
+        name: "Pastel Isi Sayur",
         image: food_27,
         price: 16000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
-    }, {
+        description: "Kue pastel goreng dengan isi sayur dan bihun gurih.",
+        category: "Kue & Cemilan"
+    },
+    {
         _id: "28",
-        name: "Chicken Pasta",
+        name: "Bika Ambon",
         image: food_28,
         price: 24000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
-    }, {
+        description: "Kue khas Medan dengan tekstur lembut dan aroma pandan.",
+        category: "Kue & Cemilan"
+    },
+    {
         _id: "29",
-        name: "Buttter Noodles",
+        name: "Ayam Kecap Manis",
         image: food_29,
         price: 14000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Noodles"
-    }, {
+        description: "Ayam dimasak dengan kecap manis dan rempah pilihan.",
+        category: "Olahan Ayam/Sapi"
+    },
+    {
         _id: "30",
-        name: "Veg Noodles",
+        name: "Rendang Daging Sapi",
         image: food_30,
         price: 12000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Noodles"
-    }, {
+        description: "Daging sapi dimasak santan dan rempah pedas khas Minang.",
+        category: "Olahan Ayam/Sapi"
+    },
+    {
         _id: "31",
-        name: "Somen Noodles",
+        name: "Sate Ayam Madura",
         image: food_31,
         price: 20000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Noodles"
-    }, {
+        description: "Sate ayam dengan bumbu kacang dan lontong.",
+        category: "Olahan Ayam/Sapi"
+    },
+    {
         _id: "32",
-        name: "Cooked Noodles",
+        name: "Empal Gepuk",
         image: food_32,
         price: 15000,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Noodles"
+        description: "Daging sapi manis pedas yang digepuk dan digoreng kering.",
+        category: "Olahan Ayam/Sapi"
     }
 ]
+
