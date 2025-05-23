@@ -83,9 +83,7 @@ const Cart = () => {
                     <button onClick={handlePesanan}>
                         Lanjutkan ke Pembayaran
                     </button>
-                    {/* <button onClick={() => navigate("/order")}>
-                        Lanjutkan ke Pembayaran
-                    </button> */}
+                    
                 </div>
                 <div className="cart-promocode">
                     <div>
