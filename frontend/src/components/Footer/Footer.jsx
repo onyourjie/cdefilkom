@@ -30,12 +30,12 @@ const Footer = () => {
                 <h2>HUBUNGI KAMI</h2>
                 <ul>
                     <li>081326587320</li>
-                    <li>contact@makanyuk.com</li>
+                    <li>contact@cdefilkom.com</li>
                 </ul>
             </div>
 
         </div>
-        <p className='footer-copyright'>Copyright 2025 MakanYuk.com All Right Reserved</p>
+        <p className='footer-copyright'>Copyright 2025 Cdefilkom.com All Right Reserved</p>
     </div>
   )
 }
