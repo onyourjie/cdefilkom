@@ -6,13 +6,6 @@ import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
-import {
-    SignedIn,
-    SignedOut,
-    SignInButton,
-    UserButton,
-} from "@clerk/clerk-react";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
@@ -21,19 +14,6 @@ const App = () => {
     return (
         <>
             {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : null}
-            {/* {showLogin ? (
-                <>
-                    <SignedOut>
-                        <SignInButton />
-                        <button className="text-blue-600 underline">
-                            Login
-                        </button>
-                    </SignedOut>
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
-                </>
-            ) : null} */}
 
             <div className="app">
                 <Navbar setShowLogin={setShowLogin} />

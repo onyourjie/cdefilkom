@@ -48,7 +48,6 @@ const PlaceOrder = () => {
         toast.success("Pembayaran berhasil");
         navigate("/");
         //store database
-        //kurangi saldo
     };
 
     const handleChange = (e) => {

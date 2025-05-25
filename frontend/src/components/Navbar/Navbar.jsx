@@ -1,17 +1,52 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/Storecontext";
-import { useClerk } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/clerk-react";
 import { UserButton } from "@clerk/clerk-react";
+import axios from "axios";
 
 const Navbar = ({ setShowLogin }) => {
-    const [menu, setMenu] = useState("home");
     const navigate = useNavigate();
-    const { redirectToSignIn } = useClerk();
-    const { isSignedIn, isLoaded } = useAuth();
+    const { redirectToSignIn, redirectToSignUp } = useClerk();
+    const { isSignedIn } = useAuth();
+    const { user } = useUser();
+    const [menu, setMenu] = useState("home");
+    const [role, setRole] = useState("admin"); //tinggal di ubah2 aja gimana ini di frontend nya
+
+    useEffect(() => {
+        const syncProfile = async () => {
+            try {
+                if (role === "user") {
+                    await axios.post("https://cdefilkom.up.railway.app/user", {
+                        id: user.id,
+                        username: user.username,
+                    });
+                    console.log(user.id ? user.id : "tidak ada id");
+                    console.log(
+                        user.username ? user.username : "tidak ada username"
+                    );
+                } else {
+                    await axios.post("https://cdefilkom.up.railway.app/admin", {
+                        id: user.id,
+                        username: user.username,
+                    });
+                    console.log(user.id ? user.id : "tidak ada id");
+                    console.log(
+                        user.username ? user.username : "tidak ada username"
+                    );
+                }
+            } catch (err) {
+                console.error("Gagal sinkron:", err);
+            }
+        };
+
+        if (user) {
+            syncProfile();
+        }
+    }, [isSignedIn, user]);
 
     const handleScroll = (id) => {
         setMenu(id);
@@ -77,12 +112,27 @@ const Navbar = ({ setShowLogin }) => {
                     {isSignedIn ? (
                         <UserButton />
                     ) : (
-                        <button onClick={() => redirectToSignIn()}>
-                            Masuk
-                        </button>
+                        <>
+                            <button
+                                onClick={() =>
+                                    redirectToSignIn({
+                                        redirectUrl: "/",
+                                    })
+                                }
+                            >
+                                Masuk
+                            </button>
+                            <button
+                                onClick={() =>
+                                    redirectToSignUp({
+                                        redirectUrl: "/",
+                                    })
+                                }
+                            >
+                                Daftar
+                            </button>
+                        </>
                     )}
-
-                    {/* <button onClick={() => setShowLogin(true)}>Masuk</button> */}
                 </div>
             </div>
         </div>
