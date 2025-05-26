@@ -1,148 +1,150 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Add.css';
-import { assets } from '../../assets/assets';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
+import { assets } from '../../assets/assets';
 
 const Add = () => {
-  const url = "http://localhost:4000"; // ganti sesuai backend kamu
+  const url = "https://cdefilkom.up.railway.app";
 
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState(null);
   const [data, setData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "Nasi & Lauk"
+    nama: "",
+    harga: "",
+    jenis: "Makanan",
+    stock: ""
   });
 
-  const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData(data => ({ ...data, [name]: value }));
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setData(prev => ({ ...prev, [name]: value }));
   };
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    console.log("Form disubmit");
+
     const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('description', data.description);
-    formData.append('price', Number(data.price));
-    formData.append('category', data.category);
-    formData.append('image', image);
-    const response = await axios.post(`${url}/api/food/add`, formData);
-    if(response.data.success){
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Nasi & Lauk"
-      })
-      setImage(false); 
-      toast.success('response.data.message');
-    }else{
-      toast.error('response.data.message');
-    }
+    formData.append("nama", data.nama);
+    formData.append("harga", Number(data.harga));
+    formData.append("jenis", data.jenis);
+    formData.append("stock", Number(data.stock));
+    formData.append("image", image); 
 
-    }
-
-    /*try {
-      const response = await axios.post(`${url}/api/food/add`, formData, {
+    try {
+      const response = await axios.post(`${url}/products`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         }
       });
-      console.log("Berhasil ditambahkan:", response.data);
-      // Reset form jika perlu
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Salad"
-      });
-      setImage(false);
-    } catch (error) {
-      console.error("Gagal menambahkan produk:", error);
-    }
-  };*/
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+      console.log("Response dari server:", response);
+      toast.success("Produk berhasil ditambahkan!");
+
+      // Reset form
+      setData({
+        nama: "",
+        harga: "",
+        jenis: "Makanan",
+        stock: ""
+      });
+      setImage(null);
+
+    } catch (error) {
+      console.error("Gagal menambahkan:", error);
+
+      if (error.response) {
+        console.log("Status:", error.response.status);
+        console.log("Data:", error.response.data);
+      } else {
+        console.log("Error:", error.message);
+      }
+
+      toast.error("Gagal menambahkan produk!");
+    }
+  };
 
   return (
-    <div className='add'>
+    <div className="add">
       <form className="flex-col" onSubmit={onSubmitHandler}>
-        <div className='add-img-upload flex-col'>
+        
+        {/* Upload Gambar */}
+        <div className="add-img-upload flex-col">
           <p>Upload Gambar</p>
           <label htmlFor="image">
-            <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="" />
+            <img
+              src={image ? URL.createObjectURL(image) : assets.upload_area}
+              alt="Preview"
+            />
           </label>
           <input
-            onChange={(e) => setImage(e.target.files[0])}
             type="file"
             id="image"
+            name="image"
             hidden
             required
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
 
-        <div className='add-product-name flex-col'>
+        {/* Nama Produk */}
+        <div className="add-product-name flex-col">
           <p>Nama Produk</p>
           <input
+            type="text"
+            name="nama"
+            value={data.nama}
             onChange={onChangeHandler}
-            value={data.name}
-            type='text'
-            name='name'
-            placeholder='Tulis Disini'
+            placeholder="Tulis nama produk"
             required
           />
         </div>
 
-        <div className='add-product-description flex-col'>
-          <p>Deskripsi Produk</p>
-          <textarea
+        {/* Jenis Produk */}
+        <div className="add-category flex-col">
+          <p>Jenis Produk</p>
+          <select name="jenis" value={data.jenis} onChange={onChangeHandler}>
+            <option value="Makanan">Makanan</option>
+            <option value="Minuman">Minuman</option>
+            <option value="Snack">Snack</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        {/* Harga Produk */}
+        <div className="add-price flex-col">
+          <p>Harga Produk</p>
+          <input
+            type="number"
+            name="harga"
+            value={data.harga}
             onChange={onChangeHandler}
-            value={data.description}
-            name="description"
-            rows="6"
-            placeholder='Tulis Konten Disini'
+            placeholder="10000"
             required
-          ></textarea>
+          />
         </div>
 
-        <div className='add-category-price'>
-          <div className='add-category flex-col'>
-            <p>Kategori Produk</p>
-            <select
-              onChange={onChangeHandler}
-              name="category"
-              value={data.category}
-            >
-              <option value="Nasi & Lauk">Nasi & Lauk</option>
-              <option value="Sayur Tradisional">Sayur Tradisional</option>
-              <option value="Jajanan Pasar">Jajanan Pasar</option>
-              <option value="Makanan Berkuah">Makanan Berkuah</option>
-              <option value="Gorengan">Gorengan</option>
-              <option value="Minuman Tradisional">Minuman Tradisional</option>
-              <option value="Kue & Cemilan">Kue & Cemilan</option>
-              <option value="Olahan Ayam/Sapi">Olahan Ayam/Sapi</option>
-            </select>
-          </div>
-
-          <div className='add-price flex-col'>
-            <p>Harga Produk</p>
-            <input
-              onChange={onChangeHandler}
-              value={data.price}
-              type="number"
-              name='price'
-              placeholder='Rp20.000'
-              min="0"
-            />
-          </div>
+        {/* Stok Produk */}
+        <div className="add-stock flex-col">
+          <p>Stok Produk</p>
+          <input
+            type="number"
+            name="stock"
+            value={data.stock}
+            onChange={onChangeHandler}
+            placeholder="10"
+            required
+          />
         </div>
 
-        <button type='submit' className='add-btn'>Tambah</button>
+        {/* Tombol Submit */}
+        <button
+          type="submit"
+          className="add-btn"
+          onClick={() => console.log("Tombol diklik")}
+        >
+          Tambah
+        </button>
       </form>
     </div>
   );
