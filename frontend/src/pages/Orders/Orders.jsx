@@ -22,14 +22,12 @@ const Orders = () => {
       const data = await res.json();
       const newOrders = Array.isArray(data) ? data : data?.id ? [data] : [];
 
-      // 🔔 Cek perubahan status
       newOrders.forEach((order) => {
         if (prevStatusMap[order.id] === false && order.status === true) {
           toast.success(`✅ Pesanan ${order.id} telah selesai!`);
         }
       });
 
-      // 🔄 Update peta status
       const newStatusMap = {};
       newOrders.forEach((order) => {
         newStatusMap[order.id] = order.status;

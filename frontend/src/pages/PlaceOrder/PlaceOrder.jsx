@@ -94,7 +94,7 @@ console.log("Is pesananProduk an array?", Array.isArray(payload.pesananProduk));
       <form onSubmit={handlePaymentProcess} className="place-order">
         <div className="place-order-left">
           <p className="title">Informasi Pemesanan</p>
-          {/* Tambahkan form input tambahan di sini jika diperlukan */}
+          {/* form input  */}
         </div>
         <div className="place-order-right">
           <div className="cart-total">

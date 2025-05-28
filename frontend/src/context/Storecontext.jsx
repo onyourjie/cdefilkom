@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [user, setUser] = useState(null);
-  const [foodList, setFoodList] = useState([]); // 🔁 Simpan produk dari backend
+  const [foodList, setFoodList] = useState([]); 
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
@@ -36,7 +36,6 @@ const StoreContextProvider = (props) => {
     setCartItems({});
   };
 
-  // 🔄 Ambil produk dari backend saat komponen pertama kali dimount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -44,7 +43,7 @@ const StoreContextProvider = (props) => {
         const data = await res.json();
 
         const formatted = data.map((item) => ({
-          _id: item.id, // gunakan id dari backend
+          _id: item.id, 
           name: item.nama,
           price: item.harga,
           image: item.gambarUrl,
@@ -62,7 +61,7 @@ const StoreContextProvider = (props) => {
   }, []);
 
   const contextValue = {
-    food_list: foodList, // ✅ Ganti jadi backend
+    food_list: foodList, 
     cartItems,
     addToCart,
     removeFromCart,

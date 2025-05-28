@@ -23,7 +23,7 @@ const Add = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true); // ✅ mulai loading
+    setLoading(true); 
     console.log("Form disubmit");
 
     const formData = new FormData();
@@ -43,7 +43,6 @@ const Add = () => {
       console.log("Response dari server:", response);
       toast.success("Produk berhasil ditambahkan!");
 
-      // Reset form
       setData({
         nama: "",
         harga: "",
@@ -56,7 +55,7 @@ const Add = () => {
       console.error("Gagal menambahkan produk", error);
       toast.error("Gagal menambahkan produk!");
     } finally {
-      setLoading(false); // ✅ berhenti loading
+      setLoading(false); 
     }
   };
 
@@ -142,7 +141,7 @@ const Add = () => {
           {loading ? "⏳ Menyimpan..." : "Tambah"}
         </button>
 
-        {/* Info tambahan saat loading */}
+        {/* Info tambahan */}
         {loading && <p style={{ marginTop: '1rem', color: '#888' }}>Sedang mengunggah produk...</p>}
       </form>
     </div>

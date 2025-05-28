@@ -34,8 +34,7 @@ const Orders = () => {
       console.error('❌ ID pesanan tidak valid');
       return;
     }
-
-    // ✅ Hindari kirim PATCH kalau status tidak berubah
+    
     if (selectedOrder.status === newStatus) {
       alert('Status tidak berubah.');
       return;
