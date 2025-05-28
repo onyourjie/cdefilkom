@@ -61,6 +61,7 @@
 .orders-page li p strong {
   color: #34495e;
 }
+
 @media (max-width: 600px) {
   .orders-page {
     margin: 1rem;
