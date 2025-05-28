@@ -7,6 +7,7 @@ import { assets } from '../../assets/assets';
 const Add = () => {
   const url = "https://cdefilkom.up.railway.app";
 
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     nama: "",
@@ -22,6 +23,7 @@ const Add = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     console.log("Form disubmit");
 
     const formData = new FormData();
@@ -41,7 +43,6 @@ const Add = () => {
       console.log("Response dari server:", response);
       toast.success("Produk berhasil ditambahkan!");
 
-      // Reset form
       setData({
         nama: "",
         harga: "",
@@ -51,16 +52,10 @@ const Add = () => {
       setImage(null);
 
     } catch (error) {
-      console.error("Gagal menambahkan:", error);
-
-      if (error.response) {
-        console.log("Status:", error.response.status);
-        console.log("Data:", error.response.data);
-      } else {
-        console.log("Error:", error.message);
-      }
-
+      console.error("Gagal menambahkan produk", error);
       toast.error("Gagal menambahkan produk!");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -100,7 +95,7 @@ const Add = () => {
           />
         </div>
 
-        {/* Jenis Produk */}
+        {/* produk */}
         <div className="add-category flex-col">
           <p>Jenis Produk</p>
           <select name="jenis" value={data.jenis} onChange={onChangeHandler}>
@@ -111,7 +106,7 @@ const Add = () => {
           </select>
         </div>
 
-        {/* Harga Produk */}
+        {/* harga produk */}
         <div className="add-price flex-col">
           <p>Harga Produk</p>
           <input
@@ -141,10 +136,13 @@ const Add = () => {
         <button
           type="submit"
           className="add-btn"
-          onClick={() => console.log("Tombol diklik")}
+          disabled={loading}
         >
-          Tambah
+          {loading ? "⏳ Menyimpan..." : "Tambah"}
         </button>
+
+        {/* Info tambahan */}
+        {loading && <p style={{ marginTop: '1rem', color: '#888' }}>Sedang mengunggah produk...</p>}
       </form>
     </div>
   );

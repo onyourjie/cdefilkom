@@ -34,7 +34,6 @@
     margin-top: 30px;
 
 }
-/* Main Styles */
 .place-order {
     display: flex;
     align-items: start;
@@ -153,4 +152,111 @@
   .close-button:hover {
     background-color: #f0f0f0;
   }
-  
+.qris-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.qris-content {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.qris-content img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.qris-content p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.qris-content a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.qris-content a:hover {
+  background-color: #2980b9;
+}
+
+.qris-content button {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.qris-content button:first-of-type {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  color: #999;
+  transition: color 0.3s ease;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.qris-content button:first-of-type:hover {
+  color: #e74c3c;
+}
+
+.qris-content button:last-of-type {
+  background-color: #27ae60;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.qris-content button:last-of-type:hover {
+  background-color: #1e874b;
+}
+
+@media (max-width: 400px) {
+  .qris-content {
+    width: 90vw;
+    padding: 1.5rem 1.5rem;
+  }
+
+  .qris-content img {
+    width: 90vw;
+    height: 90vw;
+  }
+}

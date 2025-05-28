@@ -57,7 +57,7 @@ const payload = {
   jumlahProduk: totalJumlah,
   status: false,
   pembeliId: user.id,
-  pesananProduk: produkArray // ← langsung array
+  pesananProduk: produkArray 
 };
 
 
@@ -94,7 +94,7 @@ console.log("Is pesananProduk an array?", Array.isArray(payload.pesananProduk));
       <form onSubmit={handlePaymentProcess} className="place-order">
         <div className="place-order-left">
           <p className="title">Informasi Pemesanan</p>
-          {/* Tambahkan form input tambahan di sini jika diperlukan */}
+          {/* form input  */}
         </div>
         <div className="place-order-right">
           <div className="cart-total">

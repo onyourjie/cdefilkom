@@ -1,49 +1,65 @@
 import React, { useEffect, useState, useContext } from "react";
 import { StoreContext } from "../../context/Storecontext";
+import { toast } from "react-toastify";
+import './Orders.css';
 
 const Orders = () => {
   const { user } = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [prevStatusMap, setPrevStatusMap] = useState({});
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      if (!user || !user.id) {
-        console.warn("⛔ Tidak ada user.id");
+  const fetchOrders = async () => {
+    if (!user || !user.id) return;
+
+    try {
+      const res = await fetch(`https://cdefilkom.up.railway.app/order/${user.id}`);
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("❌ Gagal ambil pesanan:", err);
         return;
       }
 
-      console.log("🔍 Mengambil pesanan untuk user ID:", user.id);
+      const data = await res.json();
+      const newOrders = Array.isArray(data) ? data : data?.id ? [data] : [];
 
-      try {
-        const res = await fetch(`https://cdefilkom.up.railway.app/order/${user.id}`);
-
-        if (!res.ok) {
-          const err = await res.json();
-          console.error("❌ Gagal ambil pesanan:", err);
-          return;
+      newOrders.forEach((order) => {
+        if (prevStatusMap[order.id] === false && order.status === true) {
+          toast.success(`✅ Pesanan ${order.id} telah selesai!`);
         }
+      });
 
-        const data = await res.json();
-        console.log("📦 Data pesanan dari backend:", data);
+      const newStatusMap = {};
+      newOrders.forEach((order) => {
+        newStatusMap[order.id] = order.status;
+      });
 
-        if (Array.isArray(data)) {
-          setOrders(data);
-        } else if (data && data.id) {
-          setOrders([data]); // Bungkus jadi array
-        } else {
-          setOrders([]);
-        }
+      setPrevStatusMap(newStatusMap);
+      setOrders(newOrders);
+    } catch (error) {
+      console.error("❌ Fetch orders error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      } catch (error) {
-        console.error("❌ Fetch orders error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
+  useEffect(() => {
     fetchOrders();
   }, [user]);
+
+  // 🔁 Polling otomatis setiap 10 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchOrders();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [user]);
+
+  const handleRefresh = () => {
+    setLoading(true);
+    setOrders([]);
+    fetchOrders();
+  };
 
   if (!user || !user.id) {
     return <p>⚠️ Silakan login untuk melihat pesanan Anda.</p>;
@@ -52,6 +68,9 @@ const Orders = () => {
   return (
     <div className="orders-page">
       <h2>Status Pesanan Kamu</h2>
+      <button onClick={handleRefresh} style={{ marginBottom: "1rem" }}>
+        🔄 Lihat Status Terbaru
+      </button>
       {loading ? (
         <p>Loading...</p>
       ) : orders.length === 0 ? (
@@ -61,11 +80,11 @@ const Orders = () => {
           {orders.map((order) => (
             <li key={order.id} style={{ marginBottom: "1rem" }}>
               <p><strong>ID Pesanan:</strong> {order.id}</p>
-              <p><strong>Status:</strong> {order.status ? "Selesai" : "Belum Selesai"}</p>
+              <p><strong>Status:</strong> {order.status ? "✅ Selesai" : "⏳ Belum Selesai"}</p>
               <p><strong>Jumlah Produk:</strong> {order.jumlahProduk}</p>
               <p><strong>Produk:</strong>{" "}
                 {Array.isArray(order.pesananProduk)
-                  ? order.pesananProduk.map(p => p?.produk?.nama).join(", ")
+                  ? order.pesananProduk.map((p) => p?.produk?.nama).join(", ")
                   : "Tidak ada produk"}
               </p>
             </li>

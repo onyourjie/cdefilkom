@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const [user, setUser] = useState(null); // Tambahkan user state
+  const [user, setUser] = useState(null);
+  const [foodList, setFoodList] = useState([]); 
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
@@ -25,7 +25,7 @@ const StoreContextProvider = (props) => {
     let total = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        const product = food_list.find((p) => p._id == item);
+        const product = foodList.find((p) => p._id == item);
         if (product) total += product.price * cartItems[item];
       }
     }
@@ -36,8 +36,32 @@ const StoreContextProvider = (props) => {
     setCartItems({});
   };
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://cdefilkom.up.railway.app/products");
+        const data = await res.json();
+
+        const formatted = data.map((item) => ({
+          _id: item.id, 
+          name: item.nama,
+          price: item.harga,
+          image: item.gambarUrl,
+          description: item.jenis, 
+          category: item.jenis,
+        }));
+
+        setFoodList(formatted);
+      } catch (error) {
+        console.error("❌ Gagal ambil produk dari backend:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const contextValue = {
-    food_list,
+    food_list: foodList, 
     cartItems,
     addToCart,
     removeFromCart,

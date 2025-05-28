@@ -10,11 +10,11 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
   const { redirectToSignIn, redirectToSignUp } = useClerk();
   const { isSignedIn } = useAuth();
-  const { user: clerkUser } = useUser(); // Rename to avoid conflict
+  const { user: clerkUser } = useUser();
   const { getTotalCartAmount, setUser } = useContext(StoreContext);
 
   const [menu, setMenu] = useState("home");
-  const [role, setRole] = useState("user"); // bisa diganti admin
+  const [role, setRole] = useState("user"); 
 
   useEffect(() => {
     const syncProfile = async () => {
