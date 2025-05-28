@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
-import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
-import { ToastContainer } from "react-toastify";
 import Orders from "./pages/Orders/Orders";
 
 const App = () => {
@@ -25,8 +27,9 @@ const App = () => {
                     <Route path="/orders" element={<Orders />} />
                 </Routes>
             </div>
+
             <Footer />
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

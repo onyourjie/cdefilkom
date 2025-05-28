@@ -7,6 +7,7 @@ import { assets } from '../../assets/assets';
 const Add = () => {
   const url = "https://cdefilkom.up.railway.app";
 
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     nama: "",
@@ -22,6 +23,7 @@ const Add = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true); // ✅ mulai loading
     console.log("Form disubmit");
 
     const formData = new FormData();
@@ -51,16 +53,10 @@ const Add = () => {
       setImage(null);
 
     } catch (error) {
-      console.error("Gagal menambahkan:", error);
-
-      if (error.response) {
-        console.log("Status:", error.response.status);
-        console.log("Data:", error.response.data);
-      } else {
-        console.log("Error:", error.message);
-      }
-
+      console.error("Gagal menambahkan produk", error);
       toast.error("Gagal menambahkan produk!");
+    } finally {
+      setLoading(false); // ✅ berhenti loading
     }
   };
 
@@ -141,10 +137,13 @@ const Add = () => {
         <button
           type="submit"
           className="add-btn"
-          onClick={() => console.log("Tombol diklik")}
+          disabled={loading}
         >
-          Tambah
+          {loading ? "⏳ Menyimpan..." : "Tambah"}
         </button>
+
+        {/* Info tambahan saat loading */}
+        {loading && <p style={{ marginTop: '1rem', color: '#888' }}>Sedang mengunggah produk...</p>}
       </form>
     </div>
   );
