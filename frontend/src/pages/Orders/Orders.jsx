@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { StoreContext } from "../../context/Storecontext";
 import { toast } from "react-toastify";
+import './Orders.css';
 
 const Orders = () => {
   const { user } = useContext(StoreContext);

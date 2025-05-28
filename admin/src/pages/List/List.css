@@ -1,0 +1,173 @@
+.list-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.list-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product-table th,
+.product-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.product-table th {
+  background-color: tomato;
+  color: white;
+}
+
+.product-table tr:hover {
+  background-color: #fce8e6; 
+}
+
+.product-table button {
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-table button:hover {
+  opacity: 0.85;
+}
+
+.product-table button:first-of-type {
+  background-color: tomato;
+  color: white;
+}
+
+.product-table button:first-of-type:hover {
+  background-color: #e55347; 
+}
+
+.product-table button:last-of-type {
+  background-color: #cc4637; 
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%; 
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 9999;
+}
+
+.modal {
+  background: white;
+  width: 350px;
+  max-width: 90vw;
+  height: 100vh;
+  padding: 1.5rem 1.8rem;
+  box-shadow: -4px 0 15px rgb(0 0 0 / 0.2);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: tomato;
+}
+
+.modal form input[type="text"],
+.modal form input[type="number"],
+.modal form input[type="file"] {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 1rem;
+  border: 1.6px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline-offset: 2px;
+}
+
+.modal form input[type="text"]:focus,
+.modal form input[type="number"]:focus,
+.modal form input[type="file"]:focus {
+  border-color: tomato;
+  outline: none;
+}
+
+.modal-buttons {
+  margin-top: auto; 
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 0.65rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button:first-child {
+  background-color: #cc4637; 
+  color: white;
+}
+
+.modal-buttons button:first-child:disabled {
+  background-color: #f5b2a8;
+  cursor: not-allowed;
+}
+
+.modal-buttons button:first-child:hover:not(:disabled) {
+  background-color: #a63b2f; 
+}
+
+.modal-buttons button:last-child {
+  background-color: tomato;
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #e55347; 
+}
+
+@media (max-width: 600px) {
+  .modal {
+    width: 100vw;
+    height: 60vh;
+    box-shadow: none;
+    padding: 1rem;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons button {
+    flex: unset;
+    width: 100%;
+  }
+}

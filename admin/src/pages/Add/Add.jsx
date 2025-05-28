@@ -95,7 +95,7 @@ const Add = () => {
           />
         </div>
 
-        {/* Jenis Produk */}
+        {/* produk */}
         <div className="add-category flex-col">
           <p>Jenis Produk</p>
           <select name="jenis" value={data.jenis} onChange={onChangeHandler}>
@@ -106,7 +106,7 @@ const Add = () => {
           </select>
         </div>
 
-        {/* Harga Produk */}
+        {/* harga produk */}
         <div className="add-price flex-col">
           <p>Harga Produk</p>
           <input
