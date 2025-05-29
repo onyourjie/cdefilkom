@@ -38,7 +38,6 @@ const List = () => {
   };
 
   const openModal = (item) => {
-    console.log('🪪 Item yang diklik edit:', item);
     setSelectedItem(item);
     setFormData({
       nama: item.nama,
@@ -104,7 +103,7 @@ const List = () => {
         <tbody>
           {list.map((item) => (
             <tr key={item.id}>
-              <td>
+              <td data-label="Gambar">
                 {item.gambarUrl ? (
                   <img
                     src={item.gambarUrl}
@@ -115,11 +114,11 @@ const List = () => {
                   <span>Tidak ada</span>
                 )}
               </td>
-              <td>{item.nama}</td>
-              <td>{item.harga}</td>
-              <td>{item.jenis}</td>
-              <td>{item.stock}</td>
-              <td>
+              <td data-label="Nama">{item.nama}</td>
+              <td data-label="Harga">{item.harga}</td>
+              <td data-label="Jenis">{item.jenis}</td>
+              <td data-label="Stok">{item.stock}</td>
+              <td data-label="Aksi">
                 <button onClick={() => handleDelete(item.id)}>🗑 Hapus</button>
                 <button onClick={() => openModal(item)}>✏️ Edit</button>
               </td>

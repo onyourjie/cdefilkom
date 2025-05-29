@@ -1,17 +1,48 @@
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 4%;
-}
-.logo {
-    height: auto;
-    width: auto;
-}
-.navbar .logo {
-    width: max(10%, 80px);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  position: relative;
 }
 
-.navbar .profile {
-    width: 55px;
+.logo {
+  height: 40px;
+}
+
+.profile {
+  height: 35px;
+  border-radius: 50%;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
