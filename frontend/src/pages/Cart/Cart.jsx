@@ -11,6 +11,7 @@ const Cart = () => {
         useContext(StoreContext);
     const { isSignedIn, isLoaded } = useAuth();
     const [promo, setPromo] = useState("");
+    const [deliveryMethod, setDeliveryMethod] = useState("pickup"); 
     const navigate = useNavigate();
 
     const handlePesanan = () => {
@@ -20,6 +21,10 @@ const Cart = () => {
             toast.warning("Anda harus login terlebih dahulu !!!");
         }
     };
+
+    const deliveryFee = deliveryMethod === "delivery" && getTotalCartAmount() > 0 ? 10000 : 0;
+    const totalAmount = getTotalCartAmount() + deliveryFee;
+
     return (
         <div className="cart">
             <div className="cart-items">
@@ -41,8 +46,7 @@ const Cart = () => {
                                     <img src={item.image} alt="" />
                                     <p>{item.name}</p>
                                     <p>{item.price}</p>
-                                    <p>{cartItems[item._id]}</p>{" "}
-                                    {/* Jumlah kuantitas yang benar */}
+                                    <p>{cartItems[item._id]}</p>
                                     <p>{item.price * cartItems[item._id]}</p>
                                     <p
                                         onClick={() => removeFromCart(item._id)}
@@ -60,6 +64,32 @@ const Cart = () => {
             <div className="cart-bottom">
                 <div className="cart-total">
                     <h2>Cart Totals</h2>
+
+                    {/* metode pengiriman */}
+                    <div className="delivery-method">
+                        <p>Pilih metode pengantaran:</p>
+                        <label>
+                            <input
+                                type="radio"
+                                value="pickup"
+                                checked={deliveryMethod === "pickup"}
+                                onChange={() => setDeliveryMethod("pickup")}
+                            />
+                            Pick Up (Gratis)
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="radio"
+                                value="delivery"
+                                checked={deliveryMethod === "delivery"}
+                                onChange={() => setDeliveryMethod("delivery")}
+                            />
+                            Diantar (+Rp 10.000)
+                        </label>
+                    </div>
+
+                    <br />
                     <div>
                         <div className="cart-total-details">
                             <p>Subtotal</p>
@@ -68,23 +98,19 @@ const Cart = () => {
                         <hr />
                         <div className="cart-total-details">
                             <p>Delivery Fee</p>
-                            <p>{getTotalCartAmount() === 0 ? 0 : 10000}</p>
+                            <p>{deliveryFee}</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <b>Total</b>
-                            <b>
-                                {getTotalCartAmount() === 0
-                                    ? 0
-                                    : getTotalCartAmount() + 10000}
-                            </b>
+                            <b>{totalAmount}</b>
                         </div>
                     </div>
                     <button onClick={handlePesanan}>
                         Lanjutkan ke Pembayaran
                     </button>
-                    
                 </div>
+
                 <div className="cart-promocode">
                     <div>
                         <p>Jika Anda memiliki kode promo, masukkan di sini.</p>
