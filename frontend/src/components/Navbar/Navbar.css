@@ -34,7 +34,6 @@
 
 .navbar button:hover{
     background-color: #fff4f2;
-
 }
 
 .navbar .active{
@@ -45,22 +44,74 @@
 .navbar li{
     cursor: pointer;
 }
+
 .navbar-search-icon{
     display: flex;
     align-items: center;
-    position : relative;
+    position: relative;
     gap: 10px;
-    
 }
+
 .navbar-search-icon .dot{
-    position : absolute;
+    position: absolute;
     min-width: 10px;
     min-height: 10px;
     background-color: tomato;
     border-radius: 5px;
-    top : 1px;
+    top: 1px;
     left: 1px;
 }
+
+/* User section styling */
+.navbar-user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 15px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+}
+
+.navbar-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.navbar-username {
+    font-weight: 600;
+    color: #49557e;
+}
+
+.navbar-role {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.navbar-role.role-user {
+    background-color: #4CAF50;
+}
+
+.navbar-role.role-admin {
+    background-color: #FF9800;
+}
+
+.logout-btn {
+    background-color: #ff6b6b !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+}
+
+.logout-btn:hover {
+    background-color: #ff5252 !important;
+}
+
 @media (max-width: 1050px){
     .navbar .logo{
         width: 140px;
@@ -90,11 +141,22 @@
         align-items: center; 
         position: relative;
         gap: 10px;
-
     }
-    
 
+    .navbar-user-section {
+        gap: 10px;
+        padding: 6px 12px;
+    }
+
+    .navbar-username {
+        font-size: 13px;
+    }
+
+    .navbar-role {
+        font-size: 11px;
+    }
 }
+
 @media (max-width: 900px){
     .navbar .logo{
         width: 120px;
@@ -113,10 +175,31 @@
         padding: 7px 20px;
         font-size: 15px;
     }
+    
+    .navbar-user-section {
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px 10px;
+    }
 
+    .navbar-user-info {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .logout-btn {
+        padding: 5px 12px !important;
+        font-size: 12px !important;
+    }
 }
+
 @media (max-width: 750px){
     .navbar-menu{
         display: none;
+    }
+    
+    .navbar-user-section {
+        gap: 8px;
+        padding: 4px 8px;
     }
 }

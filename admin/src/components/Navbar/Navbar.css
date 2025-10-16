@@ -11,9 +11,36 @@
   height: 40px;
 }
 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
 .profile {
   height: 35px;
   border-radius: 50%;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #e74c3c;
 }
 
 .menu-toggle {
@@ -45,4 +72,14 @@
   .menu-toggle {
     display: block;
   }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
+

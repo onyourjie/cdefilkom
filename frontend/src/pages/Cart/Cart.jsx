@@ -1,24 +1,25 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/Storecontext";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuthStore } from "../../store/authStore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
     const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
         useContext(StoreContext);
-    const { isSignedIn, isLoaded } = useAuth();
+    const { isAuthenticated } = useAuthStore();
     const [promo, setPromo] = useState("");
     const [deliveryMethod, setDeliveryMethod] = useState("pickup"); 
     const navigate = useNavigate();
 
     const handlePesanan = () => {
-        if (isSignedIn) {
+        if (isAuthenticated) {
             navigate("/order");
         } else {
             toast.warning("Anda harus login terlebih dahulu !!!");
+            navigate("/login");
         }
     };
 
@@ -38,7 +39,7 @@ const Cart = () => {
                 </div>
                 <br />
                 <hr />
-                {food_list.map((item, index) => {
+                {food_list.map((item) => {
                     if (cartItems[item._id] > 0) {
                         return (
                             <div key={item._id}>

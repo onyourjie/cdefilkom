@@ -1,52 +1,64 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { StoreContext } from "../../context/Storecontext";
-import { useClerk, useUser, useAuth, UserButton } from "@clerk/clerk-react";
-import axios from "axios";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
+import { useAuthStore } from "../../store/authStore";
+import { toast } from "react-toastify";
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = () => {
   const navigate = useNavigate();
-  const { redirectToSignIn, redirectToSignUp } = useClerk();
-  const { isSignedIn } = useAuth();
-  const { user: clerkUser } = useUser();
-  const { getTotalCartAmount, setUser } = useContext(StoreContext);
+  const location = useLocation();
+  const { getTotalCartAmount } = useContext(StoreContext);
+  const { setUser: setAuthUser, logout, user, role } = useAuthStore();
 
   const [menu, setMenu] = useState("home");
-  const [role, setRole] = useState("user"); 
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  // Detect apakah user di route client atau admin
+  const isClientRoute = !location.pathname.startsWith("/admin");
 
   useEffect(() => {
-    const syncProfile = async () => {
-      try {
-        if (!clerkUser) return;
-
-        const endpoint =
-          role === "user"
-            ? "https://cdefilkom.up.railway.app/user"
-            : "https://cdefilkom.up.railway.app/admin";
-
-        await axios.post(endpoint, {
-          id: clerkUser.id,
-          username: clerkUser.username,
-        });
-
-        // Simpan ke context
-        setUser({
-          id: clerkUser.id,
-          username: clerkUser.username,
-          email: clerkUser.primaryEmailAddress?.emailAddress || "",
-          role,
-        });
-      } catch (err) {
-        console.error("Gagal sinkron:", err);
+    // Listen to auth state changes
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        const userData = {
+          id: firebaseUser.uid,
+          username: firebaseUser.displayName || firebaseUser.email?.split('@')[0],
+          email: firebaseUser.email,
+          role: isClientRoute ? 'user' : 'admin', // Set role based on route
+        };
+        setAuthUser(userData);
+        setIsSignedIn(true);
+      } else {
+        logout();
+        setIsSignedIn(false);
       }
-    };
+    });
 
-    if (clerkUser) {
-      syncProfile();
+    return unsubscribe;
+  }, [setAuthUser, logout, isClientRoute]);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      logout();
+      toast.success("Logout berhasil");
+      navigate("/");
+    } catch (error) {
+      toast.error("Gagal logout: " + error.message);
     }
-  }, [isSignedIn, clerkUser]);
+  };
+
+  const handleSignIn = () => {
+    navigate("/login");
+  };
+
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
 
   const handleScroll = (id) => {
     setMenu(id);
@@ -81,12 +93,19 @@ const Navbar = ({ setShowLogin }) => {
             <img src={assets.basket_icon} alt="" />
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
-          {isSignedIn ? (
-            <UserButton />
+          
+          {isSignedIn && user ? (
+            <div className="navbar-user-section">
+              <span className="navbar-user-info">
+                <span className="navbar-username">{user.username}</span>
+                <span className={`navbar-role role-${role}`}>{role}</span>
+              </span>
+              <button onClick={handleLogout} className="logout-btn">Logout</button>
+            </div>
           ) : (
             <>
-              <button onClick={() => redirectToSignIn({ redirectUrl: "/" })}>Masuk</button>
-              <button onClick={() => redirectToSignUp({ redirectUrl: "/" })}>Daftar</button>
+              <button onClick={handleSignIn}>Masuk</button>
+              <button onClick={handleSignUp}>Daftar</button>
             </>
           )}
         </div>

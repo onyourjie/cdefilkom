@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { StoreContext } from "../../context/Storecontext";
 import { toast } from "react-toastify";
 import './Orders.css';
@@ -13,7 +13,8 @@ const Orders = () => {
     if (!user || !user.id) return;
 
     try {
-      const res = await fetch(`https://cdefilkom.up.railway.app/order/${user.id}`);
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://cdefilkom.up.railway.app";
+      const res = await fetch(`${apiBaseUrl}/order/${user.id}`);
       if (!res.ok) {
         const err = await res.json();
         console.error("❌ Gagal ambil pesanan:", err);
@@ -45,6 +46,7 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   // 🔁 Polling otomatis setiap 10 detik
@@ -53,6 +55,7 @@ const Orders = () => {
       fetchOrders();
     }, 10000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const handleRefresh = () => {

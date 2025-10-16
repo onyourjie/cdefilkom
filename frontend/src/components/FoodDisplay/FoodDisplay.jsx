@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
+import PropTypes from 'prop-types'
 import './FoodDisplay.css'
 import { StoreContext } from '../../context/Storecontext'
 import FoodItem from '../FoodItem/FoodItem'
@@ -24,6 +25,10 @@ const FoodDisplay = ({category}) => {
       
     </div>
   )
+}
+
+FoodDisplay.propTypes = {
+  category: PropTypes.string.isRequired,
 }
 
 export default FoodDisplay

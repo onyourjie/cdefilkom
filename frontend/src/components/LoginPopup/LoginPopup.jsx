@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from 'prop-types';
 import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
 
-const Loginpopup = ({ setShowLogin }) => {
+const LoginPopup = ({ setShowLogin }) => {
     const [currState, setCurrState] = useState("Login");
     return (
         <div className="login-popup">
@@ -54,4 +55,8 @@ const Loginpopup = ({ setShowLogin }) => {
     );
 };
 
-export default Loginpopup;
+LoginPopup.propTypes = {
+    setShowLogin: PropTypes.func.isRequired,
+};
+
+export default LoginPopup;

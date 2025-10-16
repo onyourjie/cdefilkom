@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 export const StoreContext = createContext(null);
 
@@ -39,7 +40,8 @@ const StoreContextProvider = (props) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://cdefilkom.up.railway.app/products");
+        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://cdefilkom.up.railway.app";
+        const res = await fetch(`${apiBaseUrl}/products`);
         const data = await res.json();
 
         const formatted = data.map((item) => ({
@@ -76,6 +78,10 @@ const StoreContextProvider = (props) => {
       {props.children}
     </StoreContext.Provider>
   );
+};
+
+StoreContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default StoreContextProvider;

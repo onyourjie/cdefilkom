@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/Storecontext";
 import QRCode from "qrcode";
@@ -60,14 +60,9 @@ const payload = {
   pesananProduk: produkArray 
 };
 
-
-  console.log("Payload yang dikirim:", JSON.stringify(payload, null, 2));
-  console.log("Full payload:", JSON.stringify(payload, null, 2));
-console.log("typeof pesananProduk:", typeof payload.pesananProduk);
-console.log("Is pesananProduk an array?", Array.isArray(payload.pesananProduk));
-
   try {
-    const res = await fetch("https://cdefilkom.up.railway.app/order/", {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://cdefilkom.up.railway.app";
+    const res = await fetch(`${apiBaseUrl}/order/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
